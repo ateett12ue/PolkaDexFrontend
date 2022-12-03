@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Particle from "./Particle";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
-
+import {TruncateAddress} from "./../truncateAddress"
 const Dashboard = () => {
   const [amount, setAmount] = useState(0);
   const { address, isConnected } = useAccount();
@@ -10,7 +10,6 @@ const Dashboard = () => {
     connector: new InjectedConnector(),
   });
   const { disconnect } = useDisconnect();
-  console.log("address", isConnected);
   return (
     <div>
       <div className="z-0 relative">
@@ -30,18 +29,18 @@ const Dashboard = () => {
                     disconnect()
                 }
               }}
-              className="text-stone-800 text-sm	font-medium tracking-wide rounded-lg p-2 border-2 bg-orange-600"
+              className="text-slate-100 text-sm	font-medium tracking-wide rounded-lg p-2 border-2 bg-orange-600"
             >
                 {
                     !isConnected
                     ?
                     "Connect Metamask Wallet"
                     :
-                    "Disconnect Metamask Wallet"
+                    TruncateAddress(address)
                 }
               
             </button>
-            <button className="text-stone-800 text-sm	font-medium tracking-wide rounded-lg p-2 border-2 bg-pink-700">
+            <button className="text-slate-100 text-sm	font-medium tracking-wide rounded-lg p-2 border-2 bg-pink-700">
               Connect Polkadot JS Wallet
             </button>
           </div>
@@ -72,9 +71,10 @@ const Dashboard = () => {
                 name="amount"
                 value={amount}
                 onChange={(e) => {
-                  setAmount(e);
+                  setAmount(e.target.valueAsNumber);
                 }}
-                type="text"
+                type="number"
+                min="1"
                 defaultValue={10}
                 className="py-1 px-4 font-Inter flex rounded-md block w-full border border-zinc-400/50 py-1 px-2 text-base shadow-sm focus:outline-transparent focus:ring focus:ring-opacity-50 disabled:text-slate-300"
               />

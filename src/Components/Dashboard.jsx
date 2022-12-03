@@ -14,10 +14,11 @@ const Dashboard = () => {
     <div>
       <div className="z-0 relative">
         <Particle />
+        
       </div>
-      <div className="z-10 absolute left-72 top-20">
+      <div className="z-40 flex flex-row justify-center items-center content-center mt-36">
         <div
-          className="rounded border-2 rounded-xl border-slate-300 p-10 flex flex-col"
+          className="rounded border-2 rounded-xl border-slate-300 p-10 flex flex-col drop-shadow-lg opacity-100"
           style={{ width: "900px" }}
         >
           <div className="flex flex-row justify-evenly">
